@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "871a6a6b-154c-4672-95bd-f29f431b66e7",
+		"name": "WeatherProxy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AllCities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities"
+					]
+				},
+				"description": "Query all cities exists in the in-memory db"
+			},
+			"response": []
+		},
+		{
+			"name": "GetInfoOfACity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/utrecht",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"utrecht"
+					]
+				},
+				"description": "Query weather data of one single city"
+			},
+			"response": []
+		},
+		{
+			"name": "InsertCityData",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cityName\": \"amsterdam\",\n    \"tempMin\": 13.8,\n    \"tempMax\": 23.3,\n    \"sunrise\": 1234568\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/utrecht",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"utrecht"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteCity",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/amsterdam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"amsterdam"
+					]
+				},
+				"description": "delete weather info of a city"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
