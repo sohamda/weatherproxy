@@ -2,38 +2,57 @@ package intake.assignment.weatherproxy.repo;
 
 import intake.assignment.weatherproxy.entity.Weather;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+//@Repository
 @Transactional
 public class WeatherRepoCustomImpl implements WeatherRepoCustom {
 
     @PersistenceContext
     EntityManager entityManager;
 
+    private final String SELECT_QUERY = "SELECT w.* FROM WEATHER as w WHERE w.city_name like ?";
+    private final String DELETE_QUERY = "DELETE FROM WEATHER w WHERE w.city_name like ? ";
+    private final String INSERT_QUERY = "";
+    private final String UPDATE_QUERY = "";
+
+    @Override
+    public Weather addCityWeather(Weather weather) {
+        if(getWeatherByCityName(weather.getCityName()) == null) {
+            //insert
+        } else {
+            // update
+        }
+        return weather;
+    }
+
     @Override
     public Optional<Weather> findByCityName(String cityName) {
-        Query query = entityManager.createNativeQuery("SELECT w.* FROM WEATHER as w WHERE w.city_name = ?", Weather.class);
-        query.setParameter(1, cityName);
-        List<Weather> matchedWeatherRecords = query.getResultList();
-
-        if(!matchedWeatherRecords.isEmpty()) {
-            return Optional.of(matchedWeatherRecords.get(0));
-        }
-        return Optional.empty();
-
+        return Optional.ofNullable(getWeatherByCityName(cityName));
     }
 
     @Override
     public void deleteByCityName(String cityName) {
-        Query query = entityManager.createNativeQuery("delete from WEATHER w where w.city_name = ? ", Weather.class);
-        query.setParameter(1, cityName);
+        Query query = entityManager.createNativeQuery(DELETE_QUERY, Weather.class);
+        query.setParameter(1, "%" + cityName + "%");
         query.executeUpdate();
+    }
+
+    private Weather getWeatherByCityName(String cityName) {
+        Weather weatherRetrieved = null;
+        Query query = entityManager.createNativeQuery(SELECT_QUERY, Weather.class);
+        query.setParameter(1, "%" + cityName + "%");
+        List<Weather> matchedWeatherRecords = query.getResultList();
+
+        if(!matchedWeatherRecords.isEmpty()) {
+            weatherRetrieved = matchedWeatherRecords.get(0);
+        }
+        return weatherRetrieved;
     }
 }

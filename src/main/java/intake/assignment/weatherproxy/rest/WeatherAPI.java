@@ -16,7 +16,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/weatherproxy")
 public class WeatherAPI {
 
     @Autowired
@@ -32,8 +32,8 @@ public class WeatherAPI {
     }
 
     @PostMapping("/cities/{cityname}")
-    EntityModel<Weather> newCityWeather(@RequestBody Weather newCityWeather) {
-        Weather weatherInfo =  weatherRepo.save(newCityWeather);
+    EntityModel<Weather> newCityWeather(@PathVariable String cityname, @RequestBody Weather newCityWeather) {
+        Weather  weatherInfo = weatherRepo.save(newCityWeather);
         return weatherModelAssembler.toModel(weatherInfo);
     }
 

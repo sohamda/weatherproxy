@@ -1,7 +1,11 @@
 package intake.assignment.weatherproxy.entity;
 
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import java.util.Date;
 
 @Entity
@@ -18,16 +22,20 @@ public class Weather {
     private Double tempMax;
     @Column(name="sunrise")
     private Long sunrise;
-    @Column(name="date_registry")
-    private Date dateOfRegistry;
 
-    public Weather(Long id, String cityName, Double tempMin, Double tempMax, Long sunrise, Date dateOfRegistry) {
+    public Weather(String cityName, Double tempMin, Double tempMax, Long sunrise) {
+        this.cityName = cityName;
+        this.tempMin = tempMin;
+        this.tempMax = tempMax;
+        this.sunrise = sunrise;
+    }
+
+    public Weather(Long id, String cityName, Double tempMin, Double tempMax, Long sunrise) {
         this.id = id;
         this.cityName = cityName;
         this.tempMin = tempMin;
         this.tempMax = tempMax;
         this.sunrise = sunrise;
-        this.dateOfRegistry = dateOfRegistry;
     }
 
     public Weather() {}
@@ -72,14 +80,6 @@ public class Weather {
         this.sunrise = sunrise;
     }
 
-    public Date getDateOfRegistry() {
-        return dateOfRegistry;
-    }
-
-    public void setDateOfRegistry(Date dateOfRegistry) {
-        this.dateOfRegistry = dateOfRegistry;
-    }
-
     @Override
     public String toString() {
         return "Weather{" +
@@ -88,7 +88,6 @@ public class Weather {
                 ", tempMin=" + tempMin +
                 ", tempMax=" + tempMax +
                 ", sunrise=" + sunrise +
-                ", dateOfRegistry=" + dateOfRegistry +
                 '}';
     }
 }
