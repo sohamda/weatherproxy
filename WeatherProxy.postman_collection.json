@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/cities",
+					"raw": "http://localhost:8080/api/v1/weatherproxy/cities",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,6 +20,7 @@
 					"path": [
 						"api",
 						"v1",
+						"weatherproxy",
 						"cities"
 					]
 				},
@@ -33,7 +34,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/cities/utrecht",
+					"raw": "http://localhost:8080/api/v1/weatherproxy/cities/amsterdam",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -42,8 +43,9 @@
 					"path": [
 						"api",
 						"v1",
+						"weatherproxy",
 						"cities",
-						"utrecht"
+						"amsterdam"
 					]
 				},
 				"description": "Query weather data of one single city"
@@ -57,7 +59,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"cityName\": \"amsterdam\",\n    \"tempMin\": 13.8,\n    \"tempMax\": 23.3,\n    \"sunrise\": 1234568\n}",
+					"raw": "{\n    \"cityName\": \"utrecht\",\n    \"tempMin\": 13.8,\n    \"tempMax\": 23.3,\n    \"sunrise\": 1234568\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -65,7 +67,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/cities/utrecht",
+					"raw": "http://localhost:8080/api/v1/weatherproxy/cities/amsterdam",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -74,8 +76,9 @@
 					"path": [
 						"api",
 						"v1",
+						"weatherproxy",
 						"cities",
-						"utrecht"
+						"amsterdam"
 					]
 				}
 			},
@@ -87,7 +90,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/cities/amsterdam",
+					"raw": "http://localhost:8080/api/v1/weatherproxy/cities/amsterdam",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -96,6 +99,7 @@
 					"path": [
 						"api",
 						"v1",
+						"weatherproxy",
 						"cities",
 						"amsterdam"
 					]

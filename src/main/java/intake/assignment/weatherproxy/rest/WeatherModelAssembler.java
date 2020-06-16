@@ -14,8 +14,8 @@ public class WeatherModelAssembler implements RepresentationModelAssembler<Weath
     @Override
     public EntityModel<Weather> toModel(Weather weather) {
         return EntityModel.of(weather,
-                linkTo(methodOn(WeatherAPI.class).one(weather.getCityName())).withSelfRel(),
-                linkTo(methodOn(WeatherAPI.class).all()).withRel("employees"));
+                linkTo(methodOn(WeatherAPI.class).returnWeatherDataByCity(weather.getCityName())).withSelfRel(),
+                linkTo(methodOn(WeatherAPI.class).returnAllWeatherData()).withRel("cities"));
     }
 }
 

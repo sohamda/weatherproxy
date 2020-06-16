@@ -1,7 +1,6 @@
 package intake.assignment.weatherproxy.repo;
 
 import intake.assignment.weatherproxy.entity.Weather;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 
-//@Repository
 @Transactional
 public class WeatherRepoCustomImpl implements WeatherRepoCustom {
 
@@ -19,18 +17,6 @@ public class WeatherRepoCustomImpl implements WeatherRepoCustom {
 
     private final String SELECT_QUERY = "SELECT w.* FROM WEATHER as w WHERE w.city_name like ?";
     private final String DELETE_QUERY = "DELETE FROM WEATHER w WHERE w.city_name like ? ";
-    private final String INSERT_QUERY = "";
-    private final String UPDATE_QUERY = "";
-
-    @Override
-    public Weather addCityWeather(Weather weather) {
-        if(getWeatherByCityName(weather.getCityName()) == null) {
-            //insert
-        } else {
-            // update
-        }
-        return weather;
-    }
 
     @Override
     public Optional<Weather> findByCityName(String cityName) {

@@ -6,7 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -23,29 +29,34 @@ public class WeatherAPI {
     private WeatherRepo weatherRepo;
     @Autowired
     private WeatherModelAssembler weatherModelAssembler;
+    @Autowired
+    private WeatherMapRestClient weatherMapRestClient;
 
     @GetMapping("/cities")
-    CollectionModel<EntityModel<Weather>> all() {
-
+    CollectionModel<EntityModel<Weather>> returnAllWeatherData() {
         List<EntityModel<Weather>> allWeatherInfo = weatherRepo.findAll().stream().map(weatherModelAssembler::toModel).collect(Collectors.toList());
-        return CollectionModel.of(allWeatherInfo, linkTo(methodOn(WeatherAPI.class).all()).withSelfRel());
+        return CollectionModel.of(allWeatherInfo, linkTo(methodOn(WeatherAPI.class).returnAllWeatherData()).withSelfRel());
     }
 
     @PostMapping("/cities/{cityname}")
-    EntityModel<Weather> newCityWeather(@PathVariable String cityname, @RequestBody Weather newCityWeather) {
-        Weather  weatherInfo = weatherRepo.save(newCityWeather);
-        return weatherModelAssembler.toModel(weatherInfo);
+    EntityModel<Weather> insertNewWeatherDataByCity(@PathVariable String cityname) {
+        Weather  weatherInfoRetrieved = weatherMapRestClient.getWeathermapResponse(cityname);
+        // remove any existing entry
+        weatherRepo.deleteByCityName(cityname);
+        //insert the retrieved info
+        Weather  weatherInfoSaved = weatherRepo.save(weatherInfoRetrieved);
+        return weatherModelAssembler.toModel(weatherInfoSaved);
     }
 
     @GetMapping("/cities/{cityname}")
-    EntityModel<Weather> one(@PathVariable String cityname) {
+    EntityModel<Weather> returnWeatherDataByCity(@PathVariable String cityname) {
         Weather weatherInfo = weatherRepo.findByCityName(cityname)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "City Not Found"));
         return weatherModelAssembler.toModel(weatherInfo);
     }
     @DeleteMapping("/cities/{cityname}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    void deleteCity(@PathVariable String cityname) {
+    void deleteWeatherDataByCity(@PathVariable String cityname) {
         weatherRepo.deleteByCityName(cityname);
     }
 }
