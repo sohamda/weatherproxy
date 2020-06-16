@@ -1,8 +1,10 @@
-package intake.assignment.weatherproxy.rest;
+package intake.assignment.weatherproxy.rest.controller;
 
 import intake.assignment.weatherproxy.entity.Weather;
+import intake.assignment.weatherproxy.rest.controller.WeatherAPI;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -14,7 +16,7 @@ public class WeatherModelAssembler implements RepresentationModelAssembler<Weath
     @Override
     public EntityModel<Weather> toModel(Weather weather) {
         return EntityModel.of(weather,
-                linkTo(methodOn(WeatherAPI.class).returnWeatherDataByCity(weather.getCityName())).withSelfRel(),
+                WebMvcLinkBuilder.linkTo(methodOn(WeatherAPI.class).returnWeatherDataByCity(weather.getCityName())).withSelfRel(),
                 linkTo(methodOn(WeatherAPI.class).returnAllWeatherData()).withRel("cities"));
     }
 }

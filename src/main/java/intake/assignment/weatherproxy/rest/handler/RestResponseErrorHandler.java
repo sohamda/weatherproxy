@@ -1,4 +1,4 @@
-package intake.assignment.weatherproxy.rest;
+package intake.assignment.weatherproxy.rest.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;

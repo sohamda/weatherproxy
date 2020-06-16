@@ -1,7 +1,8 @@
-package intake.assignment.weatherproxy.rest;
+package intake.assignment.weatherproxy.rest.controller;
 
 import intake.assignment.weatherproxy.entity.Weather;
 import intake.assignment.weatherproxy.repo.WeatherRepo;
+import intake.assignment.weatherproxy.rest.client.WeatherMapRestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;

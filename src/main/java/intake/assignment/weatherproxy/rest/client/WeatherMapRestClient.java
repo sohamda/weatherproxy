@@ -1,6 +1,7 @@
-package intake.assignment.weatherproxy.rest;
+package intake.assignment.weatherproxy.rest.client;
 
 import intake.assignment.weatherproxy.entity.Weather;
+import intake.assignment.weatherproxy.rest.handler.RestResponseErrorHandler;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

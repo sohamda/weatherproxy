@@ -1,6 +1,7 @@
-package intake.assignment.weatherproxy.repo;
+package intake.assignment.weatherproxy.repo.impl;
 
 import intake.assignment.weatherproxy.entity.Weather;
+import intake.assignment.weatherproxy.repo.WeatherRepoCustom;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;

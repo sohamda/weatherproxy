@@ -34,7 +34,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/weatherproxy/cities/amsterdam",
+					"raw": "http://localhost:8080/api/v1/weatherproxy/cities/utrecht",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -45,7 +45,7 @@
 						"v1",
 						"weatherproxy",
 						"cities",
-						"amsterdam"
+						"utrecht"
 					]
 				},
 				"description": "Query weather data of one single city"
