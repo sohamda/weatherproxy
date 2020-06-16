@@ -3,8 +3,6 @@ package intake.assignment.weatherproxy.rest.controller;
 import intake.assignment.weatherproxy.entity.Weather;
 import intake.assignment.weatherproxy.repo.WeatherRepo;
 import intake.assignment.weatherproxy.rest.client.WeatherMapRestClient;
-import intake.assignment.weatherproxy.rest.controller.WeatherAPI;
-import intake.assignment.weatherproxy.rest.controller.WeatherModelAssembler;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

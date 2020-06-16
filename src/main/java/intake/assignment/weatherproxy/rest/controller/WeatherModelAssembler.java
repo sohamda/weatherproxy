@@ -1,7 +1,6 @@
 package intake.assignment.weatherproxy.rest.controller;
 
 import intake.assignment.weatherproxy.entity.Weather;
-import intake.assignment.weatherproxy.rest.controller.WeatherAPI;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
